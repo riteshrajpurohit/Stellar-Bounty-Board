@@ -1,4 +1,4 @@
-<img width="311" height="678" alt="Screenshot 2026-04-22 at 11 00 33 PM" src="https://github.com/user-attachments/assets/5dde2aa1-e419-4e11-9f40-b1470d46491c" /># ⭐ Stellar Bounty Board
+# ⭐ Stellar Bounty Board
 
 > A production-grade, decentralised freelancing and bounty platform built on the **Stellar Testnet**.  
 > Connect your Freighter wallet · Post or claim bounties · Get paid in real XLM.
@@ -252,7 +252,8 @@ Key feedback and implemented changes are documented in:
 <img width="1470" height="834" alt="Screenshot 2026-04-22 at 7 44 52 PM" src="https://github.com/user-attachments/assets/f85bcbe0-e83e-4e12-8752-e7be4c2fd7db" />
 
 ## Bounty Detail
-<img width="1470" height="834" alt="Screenshot 2026-04-22 at 7 45 08 PM" src="https://github.com/user-attachments/assets/6de5da35-5e17-4264-aa15-bad1b1c942e9" />
+<img width="1470" height="834" alt="Screenshot 2026-04-22 at 11 46 58 PM" src="https://github.com/user-attachments/assets/ce5a2bef-a365-4515-930a-b23192cef91c" />
+
 <img width="1470" height="834" alt="Screenshot 2026-04-22 at 7 44 41 PM" src="https://github.com/user-attachments/assets/e9bd5788-a61b-42de-96bf-685036143ad9" />
 
 

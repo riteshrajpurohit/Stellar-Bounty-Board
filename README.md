@@ -12,45 +12,45 @@
 
 ## 🔗 Links & Resources
 
-| Resource | URL |
-|----------|-----|
-| **Live Demo** | [stellar-bounty-board.vercel.app](https://stellar-bounty-board-beige.vercel.app/) |
-| **Video Walkthrough** | [Loom Demo Recording](#) *(record & fill)* |
-| **Architecture Docs** | [docs/architecture.md](docs/architecture.md) |
-| **User Validation Report** | [docs/validation-report.md](docs/validation-report.md) |
-| **Feedback Form** | [Google Form — User Feedback](https://forms.gle/e8vcWE6bwrgGVHRW9)|
-| **Feedback Sheet** | [Google Sheet — Responses](https://docs.google.com/spreadsheets/d/1QkhFzsTeqKYlsigBqoPjDJsMpC4Xts5WzWZX-6zS-Q0/edit?gid=1764173239#gid=1764173239)|
+| Resource                   | URL                                                                                                                                                |
+| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Live Demo**              | [stellar-bounty-board.vercel.app](https://stellar-bounty-board-beige.vercel.app/)                                                                  |
+| **Video Walkthrough**      | [Loom Demo Recording](#) _(record & fill)_                                                                                                         |
+| **Architecture Docs**      | [docs/architecture.md](docs/architecture.md)                                                                                                       |
+| **User Validation Report** | [docs/validation-report.md](docs/validation-report.md)                                                                                             |
+| **Feedback Form**          | [Google Form — User Feedback](https://forms.gle/e8vcWE6bwrgGVHRW9)                                                                                 |
+| **Feedback Sheet**         | [Google Sheet — Responses](https://docs.google.com/spreadsheets/d/1QkhFzsTeqKYlsigBqoPjDJsMpC4Xts5WzWZX-6zS-Q0/edit?gid=1764173239#gid=1764173239) |
 
 ---
 
 ## ✨ Features
 
-| Feature | Description |
-|---------|-------------|
-| 🔐 **Wallet Authentication** | One-click login with Freighter. Handles not-installed, rejection, and loading gracefully. |
-| 📋 **Bounty Creation** | Post tasks with title, category, reward, deadline, description, and optional reference URL. All validated (Zod). |
-| 🏪 **Marketplace** | Browse and filter bounties by category and search keyword. Real-time data from Supabase. |
-| 📨 **Submissions** | Contributors submit work (GitHub link + notes). Stored in Supabase with status tracking. |
-| ✅ **Creator Review** | Bounty creators see all submissions, approve the winner, and trigger a real XLM payment. |
-| 💸 **Real XLM Payouts** | Uses `@stellar/stellar-sdk` to build a payment transaction, signed by Freighter, submitted to Horizon Testnet. Transaction hash stored immutably. |
-| 🔍 **On-Chain Verification** | Explorer links to `testnet.stellarchain.io` on every payout for independent verification. |
-| 📊 **Dashboard** | Shows active bounty count and earned XLM fetched from live Supabase data. |
-| 📱 **Mobile Responsive** | Full mobile layout — hamburger nav, stacked cards, full-width buttons. |
-| 🔔 **Toast Notifications** | Clean, auto-dismissing toast messages for all success, error, and info states. |
+| Feature                      | Description                                                                                                                                       |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 🔐 **Wallet Authentication** | One-click login with Freighter. Handles not-installed, rejection, and loading gracefully.                                                         |
+| 📋 **Bounty Creation**       | Post tasks with title, category, reward, deadline, description, and optional reference URL. All validated (Zod).                                  |
+| 🏪 **Marketplace**           | Browse and filter bounties by category and search keyword. Real-time data from Supabase.                                                          |
+| 📨 **Submissions**           | Contributors submit work (GitHub link + notes). Stored in Supabase with status tracking.                                                          |
+| ✅ **Creator Review**        | Bounty creators see all submissions, approve the winner, and trigger a real XLM payment.                                                          |
+| 💸 **Real XLM Payouts**      | Uses `@stellar/stellar-sdk` to build a payment transaction, signed by Freighter, submitted to Horizon Testnet. Transaction hash stored immutably. |
+| 🔍 **On-Chain Verification** | Explorer links to `testnet.stellarchain.io` on every payout for independent verification.                                                         |
+| 📊 **Dashboard**             | Shows active bounty count and earned XLM fetched from live Supabase data.                                                                         |
+| 📱 **Mobile Responsive**     | Full mobile layout — hamburger nav, stacked cards, full-width buttons.                                                                            |
+| 🔔 **Toast Notifications**   | Clean, auto-dismissing toast messages for all success, error, and info states.                                                                    |
 
 ---
 
 ## 🛠️ Technology Stack
 
-| Layer | Technology |
-|-------|-----------|
-| Frontend | React 19, Vite 8, TypeScript |
-| Styling | Tailwind CSS v4, Radix UI primitives |
-| Data / Caching | Supabase (Postgres + RLS), `@tanstack/react-query` |
-| Web3 | `@stellar/stellar-sdk` v15, `@stellar/freighter-api` v6 |
-| Forms | `react-hook-form` + Zod validation |
-| Testing | Vitest |
-| CI/CD | GitHub Actions |
+| Layer          | Technology                                              |
+| -------------- | ------------------------------------------------------- |
+| Frontend       | React 19, Vite 8, TypeScript                            |
+| Styling        | Tailwind CSS v4, Radix UI primitives                    |
+| Data / Caching | Supabase (Postgres + RLS), `@tanstack/react-query`      |
+| Web3           | `@stellar/stellar-sdk` v15, `@stellar/freighter-api` v6 |
+| Forms          | `react-hook-form` + Zod validation                      |
+| Testing        | Vitest                                                  |
+| CI/CD          | GitHub Actions                                          |
 
 ---
 
@@ -59,6 +59,7 @@
 See the full [Architecture Document](docs/architecture.md) for the system overview, data flow, and transaction lifecycle.
 
 **Quick summary:**
+
 ```
 User (Freighter) → React App → Supabase (bounties/submissions/payouts)
                              → Stellar Horizon (sign + submit tx)
@@ -70,6 +71,7 @@ User (Freighter) → React App → Supabase (bounties/submissions/payouts)
 ## 🚀 Quickstart: Local Setup
 
 ### Prerequisites
+
 - Node.js ≥ 20.x
 - [Freighter Wallet](https://freighter.app) browser extension
 - A Supabase project (free tier works)
@@ -126,6 +128,7 @@ npm run test
 ```
 
 **Current test coverage:**
+
 - `bountySchema.test.ts` — 5 tests (valid data, short title, non-positive reward, past deadline, short description)
 - `submissionSchema.test.ts` — 3 tests (valid, short notes, empty link)
 
@@ -150,10 +153,10 @@ View [`.github/workflows/ci.yml`](.github/workflows/ci.yml).
 
 ## 🌍 Environment Variables
 
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `VITE_SUPABASE_URL` | ✅ | Your Supabase project URL |
-| `VITE_SUPABASE_ANON_KEY` | ✅ | Supabase anon/public key |
+| Variable                 | Required | Description                                    |
+| ------------------------ | -------- | ---------------------------------------------- |
+| `VITE_SUPABASE_URL`      | ✅       | https://wfhcjtxghcvbqqlmbfdu.supabase.co       |
+| `VITE_SUPABASE_ANON_KEY` | ✅       | sb_publishable_CeukuC1AATxkDNQ8bLgk0A_e2qPYG5P |
 
 > All Stellar config (Horizon URL, network passphrase) is hardcoded to testnet in `src/lib/stellar/payments.ts`.
 
@@ -208,22 +211,23 @@ Stellar Bounty Board uses **direct peer-to-peer payments** on the Stellar testne
 
 ### Validated Wallet Addresses
 
-| # | Wallet Address | Feedback Submitted |
-|---|---------------|-------------------|
-| 1 | `GBDXA7KL4MJIQSQC4OAXD6MNQMKP2MFX6FB7BKLHEYIMDG5IQVMB7RT` | ✅ |
-| 2 | `GCVFBH4QXHKP9JMH3KLPWQUENM9C3V7KLP2W3SFMJ8R4PVQZJKTR9LP` | ✅ |
-| 3 | `GBMX2P9TF1ZVQS8VMH4SK3QZKRJ9MWQN7VJ4XNPQJHFZV1RFDS9TA7Z` | ✅ |
-| 4 | `GDZX4PK91TQZPVJQNMHF5RZGD8CWFVXS9T4M2KLBPQJHFZV1RFD7TRX` | ✅ |
-| 5 | `GAQS5H7FJ9KWZMVT4HPNBLRQ9V1QPZFHXNRT2WK8JFMZL4PTSJVQ9PZ` | ✅ |
-
+| #   | Wallet Address                                            | Feedback Submitted |
+| --- | --------------------------------------------------------- | ------------------ |
+| 1   | `GBDXA7KL4MJIQSQC4OAXD6MNQMKP2MFX6FB7BKLHEYIMDG5IQVMB7RT` | ✅                 |
+| 2   | `GCVFBH4QXHKP9JMH3KLPWQUENM9C3V7KLP2W3SFMJ8R4PVQZJKTR9LP` | ✅                 |
+| 3   | `GBMX2P9TF1ZVQS8VMH4SK3QZKRJ9MWQN7VJ4XNPQJHFZV1RFDS9TA7Z` | ✅                 |
+| 4   | `GDZX4PK91TQZPVJQNMHF5RZGD8CWFVXS9T4M2KLBPQJHFZV1RFD7TRX` | ✅                 |
+| 5   | `GAQS5H7FJ9KWZMVT4HPNBLRQ9V1QPZFHXNRT2WK8JFMZL4PTSJVQ9PZ` | ✅                 |
 
 ### Feedback & Iteration Summary
 
 Key feedback and implemented changes are documented in:
+
 - [`docs/validation-report.md`](docs/validation-report.md) — raw feedback per user
 - [`docs/iteration-notes.md`](docs/iteration-notes.md) — what we built based on that feedback
 
 **Top 3 improvements from user feedback:**
+
 1. **Mobile layout** — Increased button tap targets and padding
 2. **Empty states** — Added clear placeholder UI and CTAs when no bounties exist
 3. **Status badges** — Made Open/Awarded/Closed bounty states visually distinct
@@ -232,15 +236,35 @@ Key feedback and implemented changes are documented in:
 
 ## 📸 Screenshots
 
-> *(Run the app locally and capture screenshots, then replace these placeholders)*
+Add your final screenshots in `public/screenshots/` with these exact file names:
 
-| Screen | Description |
-|--------|-------------|
-| Home / Connect | Landing page with wallet connect CTA |
-| Marketplace | Bounty grid with filter sidebar |
-| Bounty Detail | Full requirements + submission form |
-| Review Panel | Creator approval + payout flow |
-| Dashboard | Real stats + profile |
+- `home-connect.png`
+- `marketplace.png`
+- `bounty-detail.png`
+- `review-panel.png`
+- `dashboard.png`
+
+Once added, they will auto-render below:
+
+### Home / Connect
+
+![Home / Connect](public/screenshots/home-connect.png)
+
+### Marketplace
+
+![Marketplace](public/screenshots/marketplace.png)
+
+### Bounty Detail
+
+![Bounty Detail](public/screenshots/bounty-detail.png)
+
+### Review Panel
+
+![Review Panel](public/screenshots/review-panel.png)
+
+### Dashboard
+
+![Dashboard](public/screenshots/dashboard.png)
 
 ---
 

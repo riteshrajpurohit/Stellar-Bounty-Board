@@ -1,11 +1,10 @@
-
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useWallet } from '../hooks/useWallet';
-import { useToast } from './ui/toast';
-import { Button } from './ui/button';
-import { truncateAddress } from '../lib/stellar';
-import { Rocket, Menu, X } from 'lucide-react';
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useWallet } from "../hooks/useWallet";
+import { useToast } from "./ui/toast";
+import { Button } from "./ui/button";
+import { truncateAddress } from "../lib/stellar";
+import { Rocket, Menu, X } from "lucide-react";
 
 export const Navbar = () => {
   const { isConnected, address, connect, disconnect } = useWallet();
@@ -16,29 +15,37 @@ export const Navbar = () => {
   const handleConnect = async () => {
     try {
       await connect();
-      navigate('/dashboard');
+      navigate("/");
     } catch (err: any) {
-      const msg: string = err?.message || '';
-      if (msg === 'FREIGHTER_NOT_INSTALLED') {
-        toast('Freighter wallet not detected. Opening the install page...', 'info');
-      } else if (msg.toLowerCase().includes('reject') || msg.toLowerCase().includes('cancel')) {
-        toast('Wallet connection was cancelled.', 'info');
+      const msg: string = err?.message || "";
+      if (msg === "FREIGHTER_NOT_INSTALLED") {
+        toast(
+          "Freighter wallet not detected. Opening the install page...",
+          "info",
+        );
+      } else if (
+        msg.toLowerCase().includes("reject") ||
+        msg.toLowerCase().includes("cancel")
+      ) {
+        toast("Wallet connection was cancelled.", "info");
       } else {
-        toast(msg || 'Failed to connect wallet. Please try again.', 'error');
+        toast(msg || "Failed to connect wallet. Please try again.", "error");
       }
     }
   };
 
   const handleDisconnect = () => {
     disconnect();
-    navigate('/');
+    navigate("/");
     setMobileOpen(false);
-    toast('Wallet disconnected.', 'info');
+    toast("Wallet disconnected.", "info");
   };
 
   const navLinks = [
-    { to: '/bounties', label: 'Marketplace' },
-    ...(isConnected && address ? [{ to: '/dashboard', label: 'Dashboard' }] : []),
+    { to: "/bounties", label: "Marketplace" },
+    ...(isConnected && address
+      ? [{ to: "/dashboard", label: "Dashboard" }]
+      : []),
   ];
 
   return (
@@ -47,11 +54,17 @@ export const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center gap-6">
-            <Link to="/" className="flex items-center gap-2 group" onClick={() => setMobileOpen(false)}>
+            <Link
+              to="/"
+              className="flex items-center gap-2 group"
+              onClick={() => setMobileOpen(false)}
+            >
               <div className="p-2 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors">
                 <Rocket className="h-5 w-5 text-primary" />
               </div>
-              <span className="font-bold text-lg tracking-tight hidden sm:block">Stellar Bounty</span>
+              <span className="font-bold text-lg tracking-tight hidden sm:block">
+                Stellar Bounty
+              </span>
             </Link>
 
             {/* Desktop Nav Links */}
@@ -73,10 +86,19 @@ export const Navbar = () => {
             {isConnected && address ? (
               <div className="flex items-center gap-3">
                 <div className="hidden md:flex flex-col items-end">
-                  <span className="text-xs text-emerald-600 font-semibold">● Connected</span>
-                  <span className="text-xs text-muted-foreground font-mono">{truncateAddress(address)}</span>
+                  <span className="text-xs text-emerald-600 font-semibold">
+                    ● Connected
+                  </span>
+                  <span className="text-xs text-muted-foreground font-mono">
+                    {truncateAddress(address)}
+                  </span>
                 </div>
-                <Button variant="outline" onClick={handleDisconnect} size="sm" className="text-xs">
+                <Button
+                  variant="outline"
+                  onClick={handleDisconnect}
+                  size="sm"
+                  className="text-xs"
+                >
                   Disconnect
                 </Button>
               </div>
@@ -90,9 +112,13 @@ export const Navbar = () => {
             <button
               className="md:hidden p-2 rounded-lg hover:bg-muted transition-colors"
               onClick={() => setMobileOpen(!mobileOpen)}
-              aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
             >
-              {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              {mobileOpen ? (
+                <X className="h-5 w-5" />
+              ) : (
+                <Menu className="h-5 w-5" />
+              )}
             </button>
           </div>
         </div>
@@ -113,7 +139,9 @@ export const Navbar = () => {
           ))}
           {isConnected && address && (
             <div className="pt-2 mt-2 border-t">
-              <div className="px-3 py-1 text-xs text-muted-foreground font-mono truncate">{address}</div>
+              <div className="px-3 py-1 text-xs text-muted-foreground font-mono truncate">
+                {address}
+              </div>
             </div>
           )}
         </div>

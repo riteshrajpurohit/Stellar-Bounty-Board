@@ -1,29 +1,64 @@
-import { useState, useEffect, useCallback } from 'react';
-import { supabase } from '../lib/supabase';
+import { useState, useEffect, useCallback } from "react";
 import {
   isConnected,
   isAllowed,
   requestAccess,
   getAddress,
   getNetworkDetails,
-  setAllowed
-} from '@stellar/freighter-api';
-import type { WalletState } from '../types';
+} from "@stellar/freighter-api";
+import type { WalletState } from "../types";
+
+type WalletStoreState = WalletState & { isInitializing: boolean };
+
+const initialWalletState: WalletStoreState = {
+  address: null,
+  isConnected: false,
+  isAllowed: false,
+  hasFreighter: false,
+  isInitializing: true,
+};
+
+let walletStore: WalletStoreState = initialWalletState;
+const walletSubscribers = new Set<(state: WalletStoreState) => void>();
+
+const setWalletStore = (
+  updater: WalletStoreState | ((prev: WalletStoreState) => WalletStoreState),
+) => {
+  walletStore =
+    typeof updater === "function"
+      ? (updater as (prev: WalletStoreState) => WalletStoreState)(walletStore)
+      : updater;
+  walletSubscribers.forEach((subscriber) => subscriber(walletStore));
+};
 
 export function useWallet() {
-  const [wallet, setWallet] = useState<WalletState & { isInitializing: boolean }>({
-    address: null,
-    isConnected: false,
-    isAllowed: false,
-    hasFreighter: false,
-    isInitializing: true,
-  });
+  const [wallet, setWallet] = useState<WalletStoreState>(walletStore);
+
+  useEffect(() => {
+    walletSubscribers.add(setWallet);
+    return () => {
+      walletSubscribers.delete(setWallet);
+    };
+  }, []);
 
   const checkFreighterInstall = useCallback(async () => {
     try {
       const response = await isConnected();
       const connected = response.isConnected;
-      setWallet(prev => ({ ...prev, hasFreighter: connected, isConnected: connected }));
+      setWalletStore((prev) => ({
+        ...prev,
+        hasFreighter: connected,
+      }));
+
+      if (!connected) {
+        setWalletStore((prev) => ({
+          ...prev,
+          address: null,
+          isConnected: false,
+          isAllowed: false,
+        }));
+      }
+
       return connected;
     } catch (e) {
       console.error("Freighter is not installed or available", e);
@@ -34,35 +69,43 @@ export function useWallet() {
   const fetchWalletState = useCallback(async () => {
     const installed = await checkFreighterInstall();
     if (!installed) {
-      setWallet(prev => ({ ...prev, isInitializing: false }));
+      setWalletStore((prev) => ({ ...prev, isInitializing: false }));
       return;
     }
-    
+
     try {
       const allowedResponse = await isAllowed();
       if (allowedResponse.isAllowed) {
         const addressResponse = await getAddress();
         const network = await getNetworkDetails();
-        
-        setWallet({
+
+        setWalletStore({
           address: addressResponse.address || null,
           isConnected: true,
           isAllowed: true,
           hasFreighter: true,
-          network: network?.network || 'unknown',
-          isInitializing: false
+          network: network?.network || "unknown",
+          isInitializing: false,
         });
       } else {
-        setWallet(prev => ({ ...prev, isInitializing: false }));
+        setWalletStore((prev) => ({
+          ...prev,
+          address: null,
+          isConnected: false,
+          isAllowed: false,
+          isInitializing: false,
+        }));
       }
     } catch (error) {
       console.error("Failed to fetch wallet state:", error);
-      setWallet(prev => ({ ...prev, isInitializing: false }));
+      setWalletStore((prev) => ({ ...prev, isInitializing: false }));
     }
   }, [checkFreighterInstall]);
 
   useEffect(() => {
-    fetchWalletState();
+    if (walletStore.isInitializing) {
+      fetchWalletState();
+    }
   }, [fetchWalletState]);
 
   const connect = async () => {
@@ -73,25 +116,22 @@ export function useWallet() {
         throw new Error("FREIGHTER_NOT_INSTALLED");
       }
 
-      await setAllowed();
       const accessResponse = await requestAccess();
-      
+
       if (accessResponse.error) {
         throw new Error(accessResponse.error);
       }
 
       const addressResponse = await getAddress();
-      if (addressResponse.address) {
-        // Silently ensure profile exists to satisfy database constraints without forcing UX interruption
-        await (supabase.from('profiles') as any).upsert({
-          wallet_address: addressResponse.address,
-          name: 'Anonymous Explorer',
-          email: 'none@stellar.org',
-          last_seen: new Date().toISOString()
-        }, { onConflict: 'wallet_address', ignoreDuplicates: true });
-      }
-
-      await fetchWalletState();
+      const network = await getNetworkDetails();
+      setWalletStore({
+        address: addressResponse.address || null,
+        isConnected: !!addressResponse.address,
+        isAllowed: true,
+        hasFreighter: true,
+        network: network?.network || "unknown",
+        isInitializing: false,
+      });
     } catch (error) {
       console.error("User rejected wallet connection", error);
       throw error;
@@ -99,13 +139,12 @@ export function useWallet() {
   };
 
   const disconnect = () => {
-    // Freighter doesn't have a hard disconnect method that clears permissions programmatically,
-    // but we clear the local state to emulate log out.
-    setWallet({
+    setWalletStore({
       address: null,
-      isConnected: true, // Still installed
+      isConnected: false,
       isAllowed: false,
-      hasFreighter: true,
+      hasFreighter: walletStore.hasFreighter,
+      network: walletStore.network,
       isInitializing: false,
     });
   };
@@ -113,6 +152,6 @@ export function useWallet() {
   return {
     ...wallet,
     connect,
-    disconnect
+    disconnect,
   };
 }

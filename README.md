@@ -15,7 +15,7 @@
 | Resource                   | URL                                                                                                                                                |
 | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Live Demo**              | [stellar-bounty-board.vercel.app](https://stellar-bounty-board-beige.vercel.app/)                                                                  |
-| **Video Walkthrough**      | [Loom Demo Recording](#) (https://drive.google.com/file/d/16kFqB8XvDo1qPi_OvPWUNpsqB-2TF1Q9/view?usp=sharing)                                                                                                        |
+| **Video Walkthrough**      | https://drive.google.com/file/d/16kFqB8XvDo1qPi_OvPWUNpsqB-2TF1Q9/view?usp=sharing)                                                                                                        |
 | **Architecture Docs**      | [docs/architecture.md](docs/architecture.md)                                                                                                       |
 | **User Validation Report** | [docs/validation-report.md](docs/validation-report.md)                                                                                             |
 | **Feedback Form**          | [Google Form — User Feedback](https://forms.gle/e8vcWE6bwrgGVHRW9)                                                                                 |

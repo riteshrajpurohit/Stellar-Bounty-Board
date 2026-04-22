@@ -10,11 +10,12 @@ import {
 import type { WalletState } from '../types';
 
 export function useWallet() {
-  const [wallet, setWallet] = useState<WalletState>({
+  const [wallet, setWallet] = useState<WalletState & { isInitializing: boolean }>({
     address: null,
     isConnected: false,
     isAllowed: false,
     hasFreighter: false,
+    isInitializing: true,
   });
 
   const checkFreighterInstall = useCallback(async () => {
@@ -31,7 +32,10 @@ export function useWallet() {
 
   const fetchWalletState = useCallback(async () => {
     const installed = await checkFreighterInstall();
-    if (!installed) return;
+    if (!installed) {
+      setWallet(prev => ({ ...prev, isInitializing: false }));
+      return;
+    }
     
     try {
       const allowedResponse = await isAllowed();
@@ -44,11 +48,15 @@ export function useWallet() {
           isConnected: true,
           isAllowed: true,
           hasFreighter: true,
-          network: network?.network || 'unknown'
+          network: network?.network || 'unknown',
+          isInitializing: false
         });
+      } else {
+        setWallet(prev => ({ ...prev, isInitializing: false }));
       }
     } catch (error) {
       console.error("Failed to fetch wallet state:", error);
+      setWallet(prev => ({ ...prev, isInitializing: false }));
     }
   }, [checkFreighterInstall]);
 
@@ -60,9 +68,8 @@ export function useWallet() {
     try {
       const installed = await checkFreighterInstall();
       if (!installed) {
-        alert("Please install the Freighter wallet extension to continue.");
         window.open("https://freighter.app/", "_blank");
-        return;
+        throw new Error("FREIGHTER_NOT_INSTALLED");
       }
 
       await setAllowed();
@@ -80,13 +87,14 @@ export function useWallet() {
   };
 
   const disconnect = () => {
-    // Freighter doesn't have a hard disconnect method that clears permissions programmatically
+    // Freighter doesn't have a hard disconnect method that clears permissions programmatically,
     // but we clear the local state to emulate log out.
     setWallet({
       address: null,
       isConnected: true, // Still installed
       isAllowed: false,
-      hasFreighter: true
+      hasFreighter: true,
+      isInitializing: false,
     });
   };
 

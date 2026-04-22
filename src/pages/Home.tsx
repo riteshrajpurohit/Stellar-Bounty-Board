@@ -1,16 +1,20 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useWallet } from '../hooks/useWallet';
 import { Button } from '../components/ui/button';
 import { ProfileForm } from '../components/ProfileForm';
-import { Rocket, ShieldCheck, Zap } from 'lucide-react';
+import { Rocket, ShieldCheck, Zap, Loader2 } from 'lucide-react';
 
 export const Home = () => {
-  const { address, connect } = useWallet();
+  const { address, connect, isInitializing } = useWallet() as any;
   const navigate = useNavigate();
 
   const handleProfileSuccess = () => {
     navigate('/dashboard');
   };
+
+  if (isInitializing) {
+    return <div className="min-h-[calc(100vh-4rem)] flex justify-center items-center"><Loader2 className="animate-spin h-8 w-8 text-primary" /></div>;
+  }
 
   return (
     <div className="min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center p-4 sm:p-8">
@@ -33,8 +37,8 @@ export const Home = () => {
             <Button size="lg" onClick={connect} className="h-14 px-8 text-lg w-full sm:w-auto shadow-lg shadow-primary/25">
               Connect Freighter Wallet
             </Button>
-            <Button size="lg" variant="outline" className="h-14 px-8 text-lg w-full sm:w-auto">
-              Explore Bounties
+            <Button size="lg" variant="outline" className="h-14 px-8 text-lg w-full sm:w-auto" asChild>
+              <Link to="/bounties">Explore Bounties</Link>
             </Button>
           </div>
 

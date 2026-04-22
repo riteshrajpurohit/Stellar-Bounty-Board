@@ -1,4 +1,4 @@
-# ⭐ Stellar Bounty Board
+<img width="311" height="678" alt="Screenshot 2026-04-22 at 11 00 33 PM" src="https://github.com/user-attachments/assets/5dde2aa1-e419-4e11-9f40-b1470d46491c" /># ⭐ Stellar Bounty Board
 
 > A production-grade, decentralised freelancing and bounty platform built on the **Stellar Testnet**.  
 > Connect your Freighter wallet · Post or claim bounties · Get paid in real XLM.
@@ -129,6 +129,9 @@ npm run test
 
 **Current test coverage:**
 
+<img width="732" height="359" alt="Screenshot 2026-04-22 at 11 19 32 PM" src="https://github.com/user-attachments/assets/a007afe0-dacd-4b3b-9de5-ba31fa129e3f" />
+
+
 - `bountySchema.test.ts` — 5 tests (valid data, short title, non-positive reward, past deadline, short description)
 - `submissionSchema.test.ts` — 3 tests (valid, short notes, empty link)
 
@@ -148,6 +151,8 @@ GitHub Actions runs on every push/PR to `main`:
 ```
 
 View [`.github/workflows/ci.yml`](.github/workflows/ci.yml).
+
+<img width="1470" height="834" alt="Screenshot 2026-04-22 at 11 21 48 PM" src="https://github.com/user-attachments/assets/9009f723-6da7-46f4-a87a-58663498a1b6" />
 
 ---
 
@@ -234,37 +239,31 @@ Key feedback and implemented changes are documented in:
 
 ---
 
-## 📸 Screenshots
+# 📸 Screenshots
 
-Add your final screenshots in `public/screenshots/` with these exact file names:
+## Home / Connect
+<img width="1470" height="834" alt="Screenshot 2026-04-22 at 7 42 36 PM" src="https://github.com/user-attachments/assets/38a9a35f-1e54-41aa-aaa8-504c57835476" />
 
-- `home-connect.png`
-- `marketplace.png`
-- `bounty-detail.png`
-- `review-panel.png`
-- `dashboard.png`
+## Dashboard
+<img width="1470" height="834" alt="Screenshot 2026-04-22 at 7 44 29 PM" src="https://github.com/user-attachments/assets/039b8d0d-cd04-4864-8514-395c8e68f87c" />
 
-Once added, they will auto-render below:
 
-### Home / Connect
+## Marketplace
+<img width="1470" height="834" alt="Screenshot 2026-04-22 at 7 44 52 PM" src="https://github.com/user-attachments/assets/f85bcbe0-e83e-4e12-8752-e7be4c2fd7db" />
 
-![Home / Connect](public/screenshots/home-connect.png)
+## Bounty Detail
+<img width="1470" height="834" alt="Screenshot 2026-04-22 at 7 45 08 PM" src="https://github.com/user-attachments/assets/6de5da35-5e17-4264-aa15-bad1b1c942e9" />
+<img width="1470" height="834" alt="Screenshot 2026-04-22 at 7 44 41 PM" src="https://github.com/user-attachments/assets/e9bd5788-a61b-42de-96bf-685036143ad9" />
 
-### Marketplace
 
-![Marketplace](public/screenshots/marketplace.png)
+## Transaction Complete
+<img width="1470" height="834" alt="Screenshot 2026-04-22 at 10 59 54 PM" src="https://github.com/user-attachments/assets/4396151e-5325-42b1-a79f-30408c527a97" />
+<img width="1470" height="834" alt="Screenshot 2026-04-22 at 10 59 42 PM" src="https://github.com/user-attachments/assets/6dd8150f-c785-45ff-be0c-776933fd1717" />
 
-### Bounty Detail
 
-![Bounty Detail](public/screenshots/bounty-detail.png)
-
-### Review Panel
-
-![Review Panel](public/screenshots/review-panel.png)
-
-### Dashboard
-
-![Dashboard](public/screenshots/dashboard.png)
+## Mobile Responsiveness
+<img width="311" height="678" alt="Screenshot 2026-04-22 at 11 00 33 PM" src="https://github.com/user-attachments/assets/51002074-3979-4852-a9b5-d6b29476f576" />
+<img width="312" height="675" alt="Screenshot 2026-04-22 at 11 01 00 PM" src="https://github.com/user-attachments/assets/c3de14c5-e594-45e6-b0e0-85e31a39b4c4" />
 
 ---
 

@@ -249,10 +249,12 @@ Key feedback and implemented changes are documented in:
 
 
 ## Marketplace
-<img width="1470" height="834" alt="Screenshot 2026-04-22 at 7 44 52 PM" src="https://github.com/user-attachments/assets/f85bcbe0-e83e-4e12-8752-e7be4c2fd7db" />
+<img width="1470" height="834" alt="Screenshot 2026-04-22 at 11 46 58 PM" src="https://github.com/user-attachments/assets/555208e9-77eb-4aca-a2db-1b579e012d82" />
+
 
 ## Bounty Detail
-<img width="1470" height="834" alt="Screenshot 2026-04-22 at 11 46 58 PM" src="https://github.com/user-attachments/assets/ce5a2bef-a365-4515-930a-b23192cef91c" />
+<img width="1470" height="834" alt="Screenshot 2026-04-22 at 7 45 08 PM" src="https://github.com/user-attachments/assets/8279e4a9-05c3-4718-ad9a-8df2819e7d28" />
+
 
 <img width="1470" height="834" alt="Screenshot 2026-04-22 at 7 44 41 PM" src="https://github.com/user-attachments/assets/e9bd5788-a61b-42de-96bf-685036143ad9" />
 

@@ -3,10 +3,27 @@ import { useWallet } from '../hooks/useWallet';
 import { Button } from '../components/ui/button';
 import { ProfileForm } from '../components/ProfileForm';
 import { Rocket, ShieldCheck, Zap, Loader2 } from 'lucide-react';
+import { useEffect } from 'react';
 
 export const Home = () => {
   const { address, connect, isInitializing } = useWallet() as any;
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (address && !isInitializing) {
+      navigate('/dashboard');
+    }
+  }, [address, isInitializing, navigate]);
+
+  const handleConnect = async () => {
+    try {
+      await connect();
+      navigate('/dashboard');
+    } catch (error) {
+      // Error handling is managed by useToast inside Navbar/hook conceptually, 
+      // but here we just catch to prevent unhandled promise rejection.
+    }
+  };
 
   const handleProfileSuccess = () => {
     navigate('/dashboard');
@@ -34,7 +51,7 @@ export const Home = () => {
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button size="lg" onClick={connect} className="h-14 px-8 text-lg w-full sm:w-auto shadow-lg shadow-primary/25">
+            <Button size="lg" onClick={handleConnect} className="h-14 px-8 text-lg w-full sm:w-auto shadow-lg shadow-primary/25">
               Connect Freighter Wallet
             </Button>
             <Button size="lg" variant="outline" className="h-14 px-8 text-lg w-full sm:w-auto" asChild>

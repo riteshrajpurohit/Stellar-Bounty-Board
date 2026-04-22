@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { supabase } from '../lib/supabase';
 import {
   isConnected,
   isAllowed,
@@ -77,6 +78,17 @@ export function useWallet() {
       
       if (accessResponse.error) {
         throw new Error(accessResponse.error);
+      }
+
+      const addressResponse = await getAddress();
+      if (addressResponse.address) {
+        // Silently ensure profile exists to satisfy database constraints without forcing UX interruption
+        await (supabase.from('profiles') as any).upsert({
+          wallet_address: addressResponse.address,
+          name: 'Anonymous Explorer',
+          email: 'none@stellar.org',
+          last_seen: new Date().toISOString()
+        }, { onConflict: 'wallet_address', ignoreDuplicates: true });
       }
 
       await fetchWalletState();

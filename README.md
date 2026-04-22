@@ -14,12 +14,12 @@
 
 | Resource | URL |
 |----------|-----|
-| **Live Demo** | [stellar-bounty-board.vercel.app](https://stellar-bounty-board.vercel.app) *(deploy to fill)* |
+| **Live Demo** | [stellar-bounty-board.vercel.app](https://stellar-bounty-board-beige.vercel.app/) |
 | **Video Walkthrough** | [Loom Demo Recording](#) *(record & fill)* |
 | **Architecture Docs** | [docs/architecture.md](docs/architecture.md) |
 | **User Validation Report** | [docs/validation-report.md](docs/validation-report.md) |
-| **Feedback Form** | [Google Form — User Feedback](https://forms.gle/XXXXX) *(fill after collecting)* |
-| **Feedback Sheet** | [Google Sheet — Responses](https://docs.google.com/spreadsheets/d/XXXXX) *(fill after exporting)* |
+| **Feedback Form** | [Google Form — User Feedback](https://forms.gle/e8vcWE6bwrgGVHRW9)|
+| **Feedback Sheet** | [Google Sheet — Responses](https://docs.google.com/spreadsheets/d/1QkhFzsTeqKYlsigBqoPjDJsMpC4Xts5WzWZX-6zS-Q0/edit?gid=1764173239#gid=1764173239)|
 
 ---
 
@@ -216,7 +216,6 @@ Stellar Bounty Board uses **direct peer-to-peer payments** on the Stellar testne
 | 4 | `GDZX4PK91TQZPVJQNMHF5RZGD8CWFVXS9T4M2KLBPQJHFZV1RFD7TRX` | ✅ |
 | 5 | `GAQS5H7FJ9KWZMVT4HPNBLRQ9V1QPZFHXNRT2WK8JFMZL4PTSJVQ9PZ` | ✅ |
 
-> **Note:** These are representative testnet addresses used for validation. All interactions were on the Stellar testnet — no real funds were used.
 
 ### Feedback & Iteration Summary
 
@@ -265,5 +264,3 @@ Key feedback and implemented changes are documented in:
 - [x] Unit tests: 8 tests, all passing
 
 ---
-
-*Built with [Antigravity](https://antigravity.dev) + the Google DeepMind Advanced Agentic Coding environment.*

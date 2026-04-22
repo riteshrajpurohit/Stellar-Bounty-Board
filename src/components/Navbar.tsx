@@ -16,6 +16,7 @@ export const Navbar = () => {
   const handleConnect = async () => {
     try {
       await connect();
+      navigate('/dashboard');
     } catch (err: any) {
       const msg: string = err?.message || '';
       if (msg === 'FREIGHTER_NOT_INSTALLED') {

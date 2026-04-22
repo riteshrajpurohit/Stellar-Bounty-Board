@@ -25,10 +25,8 @@
 
 ## Data Collection Links
 
-- **Google Form (Feedback Collection):** [https://forms.gle/XXXXX](#)  
-  *(Replace with your actual Google Form after publishing it)*
-- **Exported Responses Sheet:** [https://docs.google.com/spreadsheets/d/XXXXX](#)  
-  *(Replace link after exporting form responses to Google Sheets)*
+- **Google Form (Feedback Collection):** https://forms.gle/JHJJDesit228Lfux8
+- **Exported Responses Sheet:** https://docs.google.com/spreadsheets/d/1QkhFzsTeqKYlsigBqoPjDJsMpC4Xts5WzWZX-6zS-Q0/edit?gid=1764173239#gid=1764173239
 
 > **Note for reviewer:** The Google Form collected: name, testnet wallet address, overall rating (1–5), specific UX issues, and suggested improvements.
 
